@@ -47,8 +47,17 @@ const deletePatientFromDb = async (patientId: string) => {
   return patient;
 };
 
+const getSinglePatient = async (patientId: string) => {
+  const patient = await Patient.findOne({ _id: patientId });
+  if (!patient) {
+    throw new Error("Patient not found!");
+  }
+  return patient;
+};
+
 export const patientService = {
   getAllPatient,
   deletePatientFromDb,
   updatePatient,
+  getSinglePatient,
 };

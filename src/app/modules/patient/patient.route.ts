@@ -17,6 +17,12 @@ router.patch(
   patientController.updatePatient,
 );
 
+router.get(
+  "/:patientId",
+  checkAuth(Role.ADMIN),
+  patientController.getSinglePatient,
+);
+
 router.delete(
   "/:patientId",
   checkAuth(Role.ADMIN),
