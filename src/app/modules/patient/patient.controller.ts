@@ -46,13 +46,13 @@ const deletePatient = catchAsync(async (req: Request, res: Response) => {
 
 const getSinglePatient = catchAsync(async (req: Request, res: Response) => {
   const { patientId } = req.params;
-  await patientService.getSinglePatient(patientId);
+  const result = await patientService.getSinglePatient(patientId);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message: "Patient retrived successfully!",
-    data: null,
+    data: result,
   });
 });
 
