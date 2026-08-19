@@ -40,7 +40,7 @@ const createDoctorIntoDb = async (payload: IDoctor) => {
 };
 
 const getSigleDoctor = async (doctorId: string) => {
-  const doctor = await Doctor.findOne({ doctorId });
+  const doctor = await Doctor.findById(doctorId);
 
   return doctor;
 };
