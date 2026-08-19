@@ -11,6 +11,7 @@ const doctorSchema = new Schema<IDoctor>(
       type: String,
     },
     phone: { type: String },
+    specialization: { type: String },
   },
   { timestamps: true, versionKey: false },
 );

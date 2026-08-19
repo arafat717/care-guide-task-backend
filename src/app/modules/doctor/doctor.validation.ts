@@ -19,4 +19,8 @@ export const createDoctorValidationSchema = z.object({
       /^(?:\+8801|01)[3-9]\d{8}$/,
       "Please provide a valid Bangladeshi phone number",
     ),
+  specialization: z
+    .string()
+    .min(2, "Specialization is required")
+    .max(100, "Specialization must not exceed 100 characters"),
 });
