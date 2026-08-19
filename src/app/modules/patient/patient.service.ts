@@ -2,7 +2,7 @@ import { QueryBuilder } from "../../utils/QueryBuilder";
 import { IPatient } from "./patient.interface";
 import { Patient } from "./patient.model";
 
-const patientSearchableFields = ["name", "email", "Phone"];
+const patientSearchableFields = ["name", "email", "Phone", "condition"];
 
 const getAllPatient = async (query: Record<string, string>) => {
   const queryBuilder = new QueryBuilder(Patient.find(), query);

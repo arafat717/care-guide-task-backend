@@ -4,7 +4,8 @@ import { Patient } from "../patient/patient.model";
 import { IDoctor } from "./doctor.interfce";
 import { Doctor } from "./doctor.model";
 
-const doctorSearchableFields = ["name", "email", "phone"];
+const doctorSearchableFields = ["name", "email", "phone", "specialization"];
+const patientSearchableFields = ["name", "email", "phone", "condition"];
 
 const getAllFromDoctor = async (query: Record<string, string>) => {
   const queryBuilder = new QueryBuilder(Doctor.find(), query);
@@ -52,7 +53,7 @@ const getDoctorPatients = async (
     query,
   );
   const patients = await queryBuilder
-    .search(doctorSearchableFields)
+    .search(patientSearchableFields)
     .filter()
     .sort()
     .fields()
