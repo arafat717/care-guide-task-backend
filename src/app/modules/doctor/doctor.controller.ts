@@ -58,11 +58,22 @@ const addPatientUnderDoctor = catchAsync(
   },
 );
 
+const getSingleDoctor = catchAsync(async (req: Request, res: Response) => {
+  const { doctorId } = req.params;
+  const patient = await doctorService.getSigleDoctor(doctorId);
 
+  sendResponse(res, {
+    statusCode: StatusCodes.CREATED,
+    success: true,
+    message: "Doctor data retrived successfully",
+    data: patient,
+  });
+});
 
 export const doctorController = {
   createDoctor,
   getAllDoctor,
   addPatientUnderDoctor,
   getDoctorPatients,
+  getSingleDoctor,
 };

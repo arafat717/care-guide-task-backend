@@ -23,13 +23,17 @@ router.get(
   doctorController.getDoctorPatients,
 );
 
+router.get(
+  "/:doctorId",
+  checkAuth(Role.ADMIN),
+  doctorController.getSingleDoctor,
+);
+
 router.post(
   "/:doctorId/patients",
   checkAuth(Role.ADMIN),
   validateRequest(createPatientValidationSchema),
   doctorController.addPatientUnderDoctor,
 );
-
-
 
 export const doctorRoute = router;

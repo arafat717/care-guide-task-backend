@@ -39,6 +39,12 @@ const createDoctorIntoDb = async (payload: IDoctor) => {
   return user;
 };
 
+const getSigleDoctor = async (doctorId: string) => {
+  const doctor = await Doctor.findOne({ doctorId });
+
+  return doctor;
+};
+
 const getDoctorPatients = async (
   doctorId: string,
   query: Record<string, string>,
@@ -92,4 +98,5 @@ export const doctorService = {
   createDoctorIntoDb,
   getDoctorPatients,
   addPatientToDoctor,
+  getSigleDoctor,
 };
