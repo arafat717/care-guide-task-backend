@@ -13,12 +13,7 @@ export const createDoctorValidationSchema = z.object({
     .enum(Object.values(Role) as [string, ...string[]])
     .default(Role.DOCTOR),
 
-  phone: z
-    .string()
-    .regex(
-      /^(?:\+8801|01)[3-9]\d{8}$/,
-      "Please provide a valid Bangladeshi phone number",
-    ),
+  phone: z.string(),
   specialization: z
     .string()
     .min(2, "Specialization is required")
