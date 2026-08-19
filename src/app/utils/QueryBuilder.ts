@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
 import { Query } from "mongoose";
 import { excludeField } from "./constants";
 
@@ -11,14 +13,23 @@ export class QueryBuilder<T> {
   }
 
   filter(): this {
-    const filter = { ...this.query };
+    const filter: Record<string, any> = { ...this.query };
 
     for (const field of excludeField) {
-      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete filter[field];
     }
 
-    this.modelQuery = this.modelQuery.find(filter); // Tour.find().find(filter)
+    if (filter.createdAt) {
+      const date = new Date(filter.createdAt as string);
+      const startOfDay = new Date(date);
+      startOfDay.setUTCHours(0, 0, 0, 0);
+      const endOfDay = new Date(date);
+      endOfDay.setUTCHours(23, 59, 59, 999);
+
+      filter.createdAt = { $gte: startOfDay, $lte: endOfDay };
+    }
+
+    this.modelQuery = this.modelQuery.find(filter);
 
     return this;
   }
